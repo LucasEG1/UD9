@@ -4,17 +4,20 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Miniterminal {
+    private static Scanner leer = new Scanner(System.in);
+    
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
-        String comando = "";
         boolean salir = false;
         do {
             System.out.print("user@machine:");
-            comando = leer.nextLine();
+            //String[] comando = leerComando();
+            String comando = leer.nextLine();
             switch (comando){
                 
                 case "pwd":
                     System.out.println("comando pwd");
+                    MiniFileManager.getPWD();
                     break;
                     
                 case "cd":
@@ -23,6 +26,7 @@ public class Miniterminal {
                     
                 case "ls":
                     System.out.println("comando ls");
+                    MiniFileManager.printList(false);
                     break;
                 
                 case "ll":
@@ -57,10 +61,7 @@ public class Miniterminal {
             }
             
             
-        } while (!salir);
-        
-        
-        
+        } while (!salir);        
         
     }
     
@@ -76,5 +77,12 @@ public class Miniterminal {
         System.out.println("mv <FILE1> <FILE2>​ : Mueve o renombra ‘FILE1’ a ‘FILE2’.");
         System.out.println("help​ : Muestra una breve ayuda con los comandos disponibles.");
         System.out.println("exit​ : Termina el programa.");
+    }
+    
+    public static String[] leerComando(){
+        String comando = leer.nextLine();
+        
+        String[] args = comando.split(" ");
+        return args;
     }
 }
