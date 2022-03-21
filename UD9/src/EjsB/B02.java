@@ -13,10 +13,6 @@ public class B02 {
             String linea = leer.nextLine();
             String[] linSpl = linea.split(" ");
             int total;
-            for (int i = 0; i < linSpl.length; i++) {
-                total+=
-                
-            }
             
             
             leer.close();
