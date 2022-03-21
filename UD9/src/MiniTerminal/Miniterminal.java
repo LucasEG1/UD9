@@ -10,18 +10,20 @@ public class Miniterminal {
         Scanner leer = new Scanner(System.in);
         boolean salir = false;
         do {
-            System.out.print("user@machine:");
+            System.out.print("user@machine:~" + MiniFileManager.getPWD() + "#");
             //String[] comando = leerComando();
             String comando = leer.nextLine();
-            switch (comando){
+            String[] argumentos = MiniFileManager.leerComando(comando);
+            switch (argumentos[0]){
                 
                 case "pwd":
                     System.out.println("comando pwd");
-                    MiniFileManager.getPWD();
+                    System.out.println(MiniFileManager.getPWD());
                     break;
                     
                 case "cd":
                     System.out.println("comando cd");
+                    MiniFileManager.changeDir(argumentos[1]);
                     break;
                     
                 case "ls":
@@ -31,10 +33,16 @@ public class Miniterminal {
                 
                 case "ll":
                     System.out.println("comando ll");
+                    MiniFileManager.printList(true);
                     break;
                     
                 case "mkdir":
                     System.out.println("comando mkdir");
+                    try {
+                        MiniFileManager.makeDir(argumentos[1]);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                     
                 case "rm":
