@@ -1,4 +1,4 @@
-package ud11_casopractico_a;
+package MiniTerminalSolucion;
 
 import java.io.*;
 import java.util.*;
