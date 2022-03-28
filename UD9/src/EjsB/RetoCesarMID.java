@@ -3,9 +3,9 @@ package EjsB;
 import java.io.*;
 import java.util.*;
 
-public class RetoCesar {
-    public static int claveReal = 13;
-    
+public class RetoCesarMID {
+    public static int clave = 13;
+    public static int claveReal = clave%26;    
     
     public static String tradPalabra(String palabra){
         String palDesc = "";
@@ -34,10 +34,18 @@ public class RetoCesar {
     public static void main(String[] args) {
         
         File carta = new File("JavaFile/carta");
-        File traducida = new File("JavaFile/descifrada.txt");
         ArrayList<String> palabras = new ArrayList();
         String palabra;
-        /** PARA LEER */
+        
+        //Preguntamos por la clave a utilizar
+        Scanner leer = new Scanner(System.in);
+        System.out.println("Cuál clave será utilizada?");
+        clave = leer.nextInt();
+        leer.nextLine(); //para atrapar el enter de la anterior lectura.
+        
+        /**
+         * PARA LEER
+         */
         
         try {
             Scanner in = new Scanner(carta);
@@ -53,7 +61,10 @@ public class RetoCesar {
         /**
          * PARA ESCRIBIR
          */
-        
+        System.out.println("Qué nombre tendrá el archivo con la carta descifrada?");
+        String nombre = leer.nextLine();
+        //Creamos el archivo
+        File traducida = new File("JavaFile/" + nombre);
         try {
             FileWriter escribir = new FileWriter(traducida, false);
             for (int i = 0; i < palabras.size(); i++) {
